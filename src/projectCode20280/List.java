@@ -12,25 +12,21 @@ import java.util.Iterator;
 
 public interface List<E> extends Iterable<E> {
 	
-	int getSize();
-// 	int size();
+	int size();
 	
 	boolean isEmpty();
 	
 	E get(int i);
 	
-	void add(E e, int i);
-// 	void add(int i, E e);
+	void add(int i, E e);
 	
 	void addFirst(E e);
 	void addLast(E e);
 	
 	E remove(int i);
 
-// 	E removeFirst();
-// 	E removeLast();
-	void removeFirst();
-	void removeLast();
+	E removeFirst();
+	E removeLast();
 	
 	Iterator<E> iterator();
 }
