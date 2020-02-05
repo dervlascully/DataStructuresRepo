@@ -1,7 +1,6 @@
 package projectCode20280;
 
 import java.util.Iterator;
-// Didn't realise there would be started code when I wrote mine so I've just commented it out and put in my own code
 
 public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
 
@@ -47,10 +46,10 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
 
     // SINGLY LINKED LIST CLASS
 
-    public Node head; // First node in list
+    public Node<E> head; // First node in list
     public int size = 0; // size of list / number of nodes
 
-    public int getSize(){
+    public int size(){
         return this.size;
     }
 
@@ -151,7 +150,7 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
     eg add("hello", 3)
     will insert node with element/ value "hello" as the fourth (0 1 2 3) node in the list
      */
-    public void add(E element, int position){
+    public void add(int position, E element){
         Node current = head;
 
         if(position > size-1) {
@@ -228,10 +227,10 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
         size --; // reduce size
     }
 
-    public void remove(int position) {
+    public E remove(int position) {
 
-        Node current = head;
-        Node previous = null;
+        Node<E> current = head;
+        Node<E> previous = null;
 
         if (position > size-1) {
             throw new RuntimeException("Cannot remove node. Position out of bounds.");
@@ -241,41 +240,50 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
                 current = current.next;
             }
 
+            E temp = current.getElement();
+
             previous.setNext(current.getNext());
             // previous points to node that current was pointing to
 
             // don't think i need this
             current.setNext(null);
             // current now points to null, and is not pointed to by any nodes
+
+            return temp;
         }
     }
 
-    public void removeFirst(){
+    public E removeFirst(){
 
         if(head == null){
             throw new RuntimeException("could not remove: list is empty");
         }
 
         else{
+            E temp = head.getElement();
             head = head.getNext();
             size--;
+            return temp;
         }
     }
 
-    public void removeLast(){
+    public E removeLast(){
         if(head == null){
             throw new RuntimeException("could not remove: list is empty");
         }
 
-        Node current = head;
-        Node previous = null;
+        Node<E> current = head;
+        Node<E> previous = null;
         while(current.getNext() != null){
             previous = current;
             current = current.getNext();
         }
+        E temp = current.getElement();
         // At this point, current points to null, therefore previous is the 2nd last element and current is the last
         previous.setNext(null);
         size--;
+
+        return temp;
     }
 
     public String toString(){
@@ -342,6 +350,10 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
             return res;
         }
     }
+
+}
+
+
 
 // public class SinglyLinkedList<E> implements List<E> {
 
