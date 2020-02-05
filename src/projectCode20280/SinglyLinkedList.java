@@ -1,5 +1,6 @@
 package projectCode20280;
 
+// Didn't realise there would be started code when I wrote mine so I've just commented it out and put in my own code
 import java.util.Iterator;
 
 public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
