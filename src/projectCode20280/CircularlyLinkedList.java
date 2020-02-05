@@ -2,7 +2,7 @@ package projectCode20280;
 
 import java.util.Iterator;
 
-public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
+public class CircularlyLinkedList<E>  implements Iterable<E>, LinkedList<E>{
 
     private static class Node<E> {
 
@@ -45,12 +45,12 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
 
     }
 
-    public int getSize(){
+    public int size(){
         return this.size;
     }
 
     public boolean isEmpty(){
-        return size == 0;
+        return size() == 0;
     }
 
     public E first(){
@@ -89,10 +89,11 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
         tail = tail.getNext();
     }
 
-    public void removeFirst(){
+    public E removeFirst(){
         if(isEmpty()) throw new RuntimeException("Cannot remove node: list is empty.");
 
         Node<E> head = tail.getNext();
+        E temp = head.getElement();
 
         if(head == tail)
             tail = null;
@@ -102,18 +103,21 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
         }
 
         size--;
+        return temp;
     }
 
-    public void removeLast(){
+    public E removeLast(){
         if(isEmpty()) throw new RuntimeException("Cannot remove node: list is empty.");
 
         Node<E> current = tail.getNext();
+        E temp = current.getElement();
         while(current.getNext() != tail)
             current = current.getNext();
 
         current.setNext(tail.getNext());
         tail = current;
         size--;
+        return temp;
     }
 
     public String toString(){
@@ -129,7 +133,7 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
         return str;
     }
 
-    public void add(E element, int position){
+    public void add(int position, E element){
         Node current = tail.getNext();
 
         if(position > size-1) {
@@ -152,19 +156,17 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
 
     }
 
-    public void remove(int position){
+    public E remove(int position){
         if (position > size-1) {
             throw new RuntimeException("Cannot remove node. Position out of bounds.");
         }
 
         if(position == 0){
-            removeFirst();
-            return;
+            return removeFirst();
         }
 
         if(position == size - 1){
-            removeLast();
-            return;
+            return removeLast();
         }
 
         Node<E> current = tail.getNext();
@@ -174,8 +176,10 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
                 previous = current;
                 current = current.getNext(); }
 
+        E temp = current.getElement();
         previous.setNext(current.getNext());
         size --;
+        return temp;
     }
 
     public E get(int position){
@@ -224,6 +228,7 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
     }
 
 }
+
 
 /*
 public class CircularlyLinkedList<E> implements List<E> {
