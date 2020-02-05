@@ -1,8 +1,8 @@
 package projectCode20280;
 // Didn't realise there would be started code when I wrote mine so I've just commented it out and put in my own code
-
 import java.util.Iterator;
-public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
+
+public class DoublyLinkedList<E> implements Iterable<E>, LinkedList<E>{
 
     private static class Node<E> {
 
@@ -68,7 +68,7 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
         header.setNext(trailer);
     }
 
-    public int getSize() {
+    public int size() {
         return this.size;
     }
 
@@ -82,12 +82,15 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
         size++;
     }
 
-    public void removeElement(Node<E> node){
+    public E removeElement(Node<E> node){
+        E temp = node.getElement();
+
         Node<E> predecessor = node.getPrevious();
         Node<E> successor = node.getNext();
         predecessor.setNext(successor);
         successor.setPrevious(predecessor);
         size--;
+        return temp;
     }
 
 //    *****
@@ -125,7 +128,7 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
     }
 
     // add node at a given position
-    public void add(E element, int position){
+    public void add(int position, E element){
 
         if(position > size) {
             throw new RuntimeException("Cannot add node. Position out of bounds."); }
@@ -173,12 +176,12 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
 
     // note
     // position 0 = the first element after header, ie header.getNext()
-    public void remove(int position) {
+    public E remove(int position) {
 
         if(isEmpty())
             throw new RuntimeException("Cannot remove node. List is empty.");
 
-        Node current = header.getNext(); // position 0
+        Node<E> current = header.getNext(); // position 0
 
         if (position > size-1) { // size - 1 as index starts at 0
             throw new RuntimeException("Cannot remove node. Position out of bounds."); }
@@ -186,24 +189,24 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
         for (int i = 0; i < position; i++) { // iterate through until we get to position we are looking for
             current = current.next; }
 
-        removeElement(current);
+        return removeElement(current);
 
     }
 
 
-    public void removeFirst(){
+    public E removeFirst(){
         if(isEmpty()){
             throw new RuntimeException("could not remove: list is empty");
         }
-        removeElement(header.getNext()); // remove the first element after the header
+        return removeElement(header.getNext()); // remove the first element after the header
 
     }
 
-    public void removeLast(){
+    public E removeLast(){
         if(isEmpty()){
             throw new RuntimeException("could not remove: list is empty");
         }
-        removeElement(trailer.previous);
+        return removeElement(trailer.previous);
     }
 
     public boolean isEmpty(){
@@ -267,6 +270,7 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
 
 
 }
+
 /*
 public class DoublyLinkedList<E> implements List<E> {
 
