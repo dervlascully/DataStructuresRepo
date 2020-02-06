@@ -371,7 +371,7 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
 	
 // 	@Override
 // 	public boolean isEmpty() {
-// 		// TODO Auto-generated method stub
+//		TODO Auto-generated method stub
 // 		return false;
 // 	}
 

@@ -30,17 +30,17 @@ public class delimiterMatching {
                 if(! myStack.isEmpty()) { // if there is at least one element in the stack already
 
                     if (x == '}' && myStack.top() == '{') {
-                        System.out.println(myStack.top() + " " + x);
+//                        System.out.println(myStack.top() + " " + x);
                         myStack.pop();
                         y = 1;
                     }
                     else if (x == ')' && myStack.top() == '(') {
-                        System.out.println(myStack.top()  + " " + x);
+//                        System.out.println(myStack.top()  + " " + x);
                         myStack.pop();
                         y = 1;
                     }
                     else if (x == ']' && myStack.top() == '[') {
-                        System.out.println(myStack.top()  + " " + x);
+//                        System.out.println(myStack.top()  + " " + x);
                         myStack.pop();
                         y = 1;
                     }
@@ -54,7 +54,7 @@ public class delimiterMatching {
         if(myStack.top()==null)
             return true;
 
-        System.out.println("Stack" + myStack.toString());
+//        System.out.println("Stack" + myStack.toString());
         return false;
     }
 
