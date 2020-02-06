@@ -6,7 +6,7 @@
  * 
  */
 
-package projectCode20280;
+package projectCode20280.Practical_1;
 
 import java.util.Iterator;
 

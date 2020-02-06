@@ -1,9 +1,9 @@
-package projectCode20280;
+package projectCode20280.Practical_1;
 
 // Didn't realise there would be started code when I wrote mine so I've just commented it out and put in my own code
 import java.util.Iterator;
 
-public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
+public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
 
     /*
     There is no need for Node to be a top-level class as it is only used by
@@ -352,6 +352,13 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
         }
     }
 
+    public E first(){
+        if(isEmpty())
+            return null;
+
+        return head.getElement();
+    }
+
 }
 
 
@@ -448,4 +455,4 @@ public class SinglyLinkedList<E> implements Iterable<E>, LinkedList<E> {
 // 	}
 
 
-}
+

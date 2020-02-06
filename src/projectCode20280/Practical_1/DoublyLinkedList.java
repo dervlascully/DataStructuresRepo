@@ -1,8 +1,8 @@
-package projectCode20280;
+package projectCode20280.Practical_1;
 // Didn't realise there would be started code when I wrote mine so I've just commented it out and put in my own code
 import java.util.Iterator;
 
-public class DoublyLinkedList<E> implements Iterable<E>, LinkedList<E>{
+public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
 
     private static class Node<E> {
 
