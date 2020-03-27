@@ -6,6 +6,7 @@ public class ArrayStack<E> implements Stack<E>{
 
     private E[] data; // generic array used for storage
     private int t = -1; // index of top element in stack
+    private int cap;
 
     public ArrayStack() {
         this(CAPACITY); // Constructs stack with default capacity
@@ -14,6 +15,7 @@ public class ArrayStack<E> implements Stack<E>{
     @SuppressWarnings({"unchecked"})
     public ArrayStack(int capacity) { // constructs stack with a given capacity
         data = (E[]) new Object[capacity]; // safe cast; compiler may give warning
+        this.cap = capacity;
     }
 
     @Override
@@ -33,14 +35,14 @@ public class ArrayStack<E> implements Stack<E>{
     }
 
     public void push(E element) {
-        if (size() == CAPACITY)
+//        if (size() == CAPACITY)
 //            return StackFullError;
-            return;
+//            return;
 
-        else {
+//        else {
             t++;
             data[t] = element;
-        }
+//        }
     }
 
     public E pop() {
@@ -60,6 +62,10 @@ public class ArrayStack<E> implements Stack<E>{
         for(int i=t; i>=0; i--)
             str += (data[i] + " ");
         return str;
+    }
+
+    public int getCapacity(){
+        return this.cap;
     }
 
 }

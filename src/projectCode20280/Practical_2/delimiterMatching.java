@@ -18,7 +18,7 @@ public class delimiterMatching {
         this.array = array;
     }
 
-    public boolean checkDelimiter(){
+    public void checkDelimiter(){
 
         for(int i=0; i<input.length(); i++){
 
@@ -30,17 +30,14 @@ public class delimiterMatching {
                 if(! myStack.isEmpty()) { // if there is at least one element in the stack already
 
                     if (x == '}' && myStack.top() == '{') {
-//                        System.out.println(myStack.top() + " " + x);
                         myStack.pop();
                         y = 1;
                     }
                     else if (x == ')' && myStack.top() == '(') {
-//                        System.out.println(myStack.top()  + " " + x);
                         myStack.pop();
                         y = 1;
                     }
                     else if (x == ']' && myStack.top() == '[') {
-//                        System.out.println(myStack.top()  + " " + x);
                         myStack.pop();
                         y = 1;
                     }
@@ -51,11 +48,14 @@ public class delimiterMatching {
 
         }
 
-        if(myStack.top()==null)
-            return true;
+        if(myStack.top()==null) {
+            System.out.println(":) No Missing Delimiters! ");
+        }
+        else{
+            System.out.println(":( Your delimiters are not matching");
+        }
 
-//        System.out.println("Stack" + myStack.toString());
-        return false;
+
     }
 
 

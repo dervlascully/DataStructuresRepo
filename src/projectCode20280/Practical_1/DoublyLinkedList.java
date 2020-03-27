@@ -1,8 +1,7 @@
 package projectCode20280.Practical_1;
-// Didn't realise there would be started code when I wrote mine so I've just commented it out and put in my own code
 import java.util.Iterator;
 
-public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
+public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, List<E>{
 
     private static class Node<E> {
 
@@ -45,6 +44,10 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
 
         public void setPrevious(Node<E> previous) {
             this.previous = previous;
+        }
+
+        public void setElement(E e){
+            this.element = e;
         }
 
     }
@@ -268,102 +271,133 @@ public class DoublyLinkedList<E> implements Iterable<E>, List<E>{
         }
     }
 
+    // Assignment 1 Q5 - Selection Sort
+
+    public void selectionSort() {
+
+        Node<E> a, b, c, d, r;
+        a = b = this.header;
+
+        // while b is not the last node
+        while (b.next != null) {
+            c = d = b.next;
+
+            // while d is pointing to a valid node
+            while (d != null) {
+                if (b.getElement().compareTo(d.getElement()) > 0) {
+
+                    // if d appears immediately after b
+                    if (b.next == d) {
+
+                        // case 1: b is the head of the list
+                        if (b == header) {
+
+                            // mover d before b
+                            b.setNext(d.next);
+                            d.setNext(b);
+
+                            // swap b and d pointers
+                            r = b;
+                            b = d;
+                            d = r;
+
+                            // update head
+                            this.header = b;
+
+                            // skip to the next element
+
+
+                        }
+
+                        // case 2: b is not the head of the list
+                        else {
+                            //move d before b
+                            b.next = d.next;
+                            d.next = b;
+                            a.next = d;
+
+                            // swap b and d pointers
+                            r = b;
+                            b = d;
+                            d = r;
+                            c = d;
+
+                            // skip to the next element
+                        }
+                        d = d.next;
+                    }
+
+                    // If b and d have some non-zero
+                    // number of nodes in between them
+                    else {
+                        // Case 3: b is the head of the linked list
+                        if (b == header) {
+
+                            // Swap b.next and d.next
+                            r = b.next;
+                            b.setNext(d.next);
+                            d.next = r;
+                            c.next = b;
+
+                            // Swap b and d pointers
+                            r = b;
+                            b = d;
+                            d = r;
+
+                            c = d;
+
+                            // Skip to the next element
+                            // as it is already in order
+                            d = d.next;
+
+                            // Update the head
+                            header = b;
+
+                        }
+
+                        // Case 4: b is not the head of the linked list
+                        else {
+
+                            // Swap b.next and d.next
+                            r = b.next;
+                            b.next = d.next;
+                            d.next = r;
+                            c.next = b;
+                            a.next = d;
+
+                            // Swap b and d pointers
+                            r = b;
+                            b = d;
+                            d = r;
+
+                            c = d;
+
+                            // Skip to the next element
+                            // as it is already in order
+                            d = d.next;
+                        }
+
+                    }
+
+
+                }
+                else {
+
+                    // Update c and skip to the next element
+                    // as it is already in order
+                    c = d;
+                    d = d.next;
+                }
+            }
+
+            a = b;
+            b = b.next;
+        }
+    }
+
+
+
+
+
 
 }
-
-/*
-public class DoublyLinkedList<E> implements List<E> {
-
-	private class Node<E> {
-		
-	}
-	
-	private void addBetween(E e, Node<E> predecessor, Node<E> successor) {
-		// TODO
-	}
-	
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public E get(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void add(int i, E e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public E remove(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public E removeFirst() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public E removeLast() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-
-	@Override
-	public void addFirst(E e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addLast(E e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public static void main(String[] args) {
-		   DoublyLinkedList<Integer> ll = new DoublyLinkedList<Integer>();
-           ll.addFirst(0);
-           ll.addFirst(1);
-           ll.addFirst(2);
-           ll.addLast(-1);
-           System.out.println(ll);
-           
-           ll.removeFirst();
-           System.out.println(ll);
-
-           ll.removeLast();
-           System.out.println(ll);
-           
-           for(Integer e: ll) {
-                   System.out.println("value: " + e);
-           }
-	}
-
-	
-}
-*/
