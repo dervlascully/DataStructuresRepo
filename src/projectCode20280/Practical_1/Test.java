@@ -3,6 +3,8 @@ package projectCode20280.Practical_1;
 public class Test {
     public static void main(String[] args) {
 
+        System.out.println("\nPractical 1 - Linked Lists\n");
+
         System.out.println("\nSINGLY LINKED LIST");
         SinglyLinkedList<Integer> l1 = new SinglyLinkedList<>();
         l1.addFirst(1);
@@ -76,8 +78,6 @@ public class Test {
         l.addLast(4);
         System.out.println(l);
         l.add(2, 5);
-        System.out.println(l);
-        l.selectionSort();
         System.out.println(l);
 
     }
