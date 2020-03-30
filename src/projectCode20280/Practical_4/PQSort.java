@@ -3,17 +3,37 @@ package projectCode20280.Practical_4;
 
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class PQSort {
 
     public static void main(String[] args) {
-        main2(args);
+
+        System.out.println("\nEnter 1 for PQSort or 2 for Heaped Priority Queue Sort: ");
+        Scanner s = new Scanner(System.in);
+        boolean found = false;
+
+        while(!found) {
+            int x = s.nextInt();
+
+            if(x == 1){
+                found = true;
+                main1(args);
+            }
+
+            else if(x == 2){
+                found = true;
+                main2(args);
+            }
+        }
+
     }
 
     public static void main1(String[] args) {
 
 
+        System.out.println("\n[n, time (nanoseconds)]\n");
         int n = 100;
         while(n < 100000) {
 
@@ -44,12 +64,12 @@ public class PQSort {
 
     public static void main2(String[] args) {
 
+        System.out.println("\n[n, time (nanoseconds)]\n");
         int n = 50;
         while(n <= 110) {
 
             LinkedList<Integer> arr = new Random().ints(0, 1000).distinct().limit(n).boxed().collect(Collectors.toCollection(LinkedList::new));
             final long startTime = System.nanoTime();
-            System.out.println("\n\n" + arr + "\n");
 
             // Phase 1 - move elements from arr -> PQ
             HeapPriorityQueue<Integer, Integer> PQ = new HeapPriorityQueue<>();
@@ -70,7 +90,6 @@ public class PQSort {
             boolean isSorted = isSorted(arr.toArray(new Integer[arr.size()]), arr.size());
             System.out.println(n + " " + elapsedTime);
 
-            System.out.println("\n" + arr);
 
             n += 10;
         }
