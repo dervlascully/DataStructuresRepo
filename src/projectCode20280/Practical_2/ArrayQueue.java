@@ -2,10 +2,6 @@ package projectCode20280.Practical_2;
 
 public class ArrayQueue<E> implements Queue<E> {
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-    }
 
     public static final int CAPACITY = 1000;
     int front = -1;
@@ -44,7 +40,6 @@ public class ArrayQueue<E> implements Queue<E> {
         if(isEmpty())
             front = 0; // rear will be zero too as we are incrementing below
 
-//        arrayQueue[rear++] = e;
         arrayQueue[rear + 1] = e;
         rear++;
 

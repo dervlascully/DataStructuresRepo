@@ -101,8 +101,6 @@ public class Test {
 
         System.out.println("\nBOUNDED STACK");
         BoundedStack<Integer> s3 = new BoundedStack<>(3);
-//        System.out.println(s3.size());
-//        System.out.println(s3.getCapacity());
         s3.push(1);
         s3.push(2);
         s3.push(3);

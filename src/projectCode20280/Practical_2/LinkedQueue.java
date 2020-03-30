@@ -5,10 +5,6 @@ import projectCode20280.Practical_1.CircularlyLinkedList;
 
 public class LinkedQueue<E> implements Queue<E> {
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-    }
 
     CircularlyLinkedList<E> queue = new CircularlyLinkedList<>();
 
