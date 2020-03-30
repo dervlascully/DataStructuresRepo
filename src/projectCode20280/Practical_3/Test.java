@@ -6,6 +6,8 @@ public class Test {
 
     public static void main(String[] args) {
 
+        System.out.println("\nPractical 3 - Trees\n");
+
         LinkedBinaryTree<Integer> bt = new LinkedBinaryTree<Integer>();
 
         int [] arr = {12, 25, 31, 58, 36, 42, 90, 62, 75};
@@ -35,8 +37,6 @@ public class Test {
             System.out.println(node.getElement());
         });
 
-        LinkedList<Integer> ll = tree.inPlace();
-        System.out.println("\n" + ll);
 
 
     }
