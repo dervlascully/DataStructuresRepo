@@ -6,6 +6,8 @@ import projectCode20280.Practical_1.SinglyLinkedList;
 public class Test {
     public static void main(String[] args) {
 
+        System.out.println("\nPractical 2 - Stacks & Queues");
+
         System.out.println("\nCHECK DELIMITERS");
         delimiterMatching d1 = new delimiterMatching("{ (a + (b * c) - myArray[3] * (7 - 6) )}");
         d1.checkDelimiter(); // correct
@@ -37,7 +39,7 @@ public class Test {
         s1.pop();
         System.out.println(s1);
         System.out.println("size: " + s1.size());
-        System.out.println(s1.isEmpty());
+        System.out.println("Empty: " + s1.isEmpty());
 
         System.out.println("\nLINKED STACK");
         LinkedStack<Integer> s2 = new LinkedStack<>();
@@ -53,7 +55,7 @@ public class Test {
         s2.pop();
         System.out.println(s2);
         System.out.println("size: " + s2.size());
-        System.out.println(s2.isEmpty());
+        System.out.println("Empty: " + s2.isEmpty());
 
         System.out.println("\nARRAY QUEUE");
         ArrayQueue<Integer> q1 = new ArrayQueue<>();
@@ -69,7 +71,7 @@ public class Test {
         q1.dequeue();
         System.out.println(q1);
         System.out.println("size: " + q1.size());
-        System.out.println(q1.isEmpty());
+        System.out.println("Empty: " + q1.isEmpty());
 
         System.out.println("\nLINKED QUEUE");
         ArrayQueue<Integer> q2 = new ArrayQueue<>();
@@ -85,7 +87,7 @@ public class Test {
         q2.dequeue();
         System.out.println(q2);
         System.out.println("size: " + q2.size());
-        System.out.println(q2.isEmpty());
+        System.out.println("Empty: " + q2.isEmpty());
 
         // See SinglyLinkedList class in practical 1 for reverse method.
         System.out.println("\nPRACTICAL 2 Q2. REVERSE");
@@ -97,7 +99,7 @@ public class Test {
         l4.addFirst(5);
         System.out.println(l4);
         l4.reverse();
-        System.out.println(l4);
+        System.out.println("Reverse: " + l4);
 
         System.out.println("\nBOUNDED STACK");
         BoundedStack<Integer> s3 = new BoundedStack<>(3);
