@@ -12,7 +12,7 @@ public class WordCounter {
 
     public static void main(String[] args) {
 
-        // Key: word, Value: frequency
+        /* Key: word, Value: frequency */
         ChainHashMap<String, Integer> wordCounter = new ChainHashMap<>();
 
         File file = new File("/Users/DervlaScully/Desktop/2nd Year Semester 2/Data Structures/datastructures-dervlascully/src/projectCode20280/Practical_5/sample_text");
