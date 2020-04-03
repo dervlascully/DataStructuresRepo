@@ -1,7 +1,6 @@
-package projectCode20280.Practical_2;
+package projectCode20280.Practical_2_StacksAndQueues;
 
-import jdk.swing.interop.SwingInterOpUtils;
-import projectCode20280.Practical_1.SinglyLinkedList;
+import projectCode20280.Practical_1_LinkedLists.SinglyLinkedList;
 
 public class Test {
     public static void main(String[] args) {

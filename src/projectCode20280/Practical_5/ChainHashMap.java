@@ -2,7 +2,7 @@ package projectCode20280.Practical_5;
 
 
 
-import projectCode20280.Practical_4.Entry;
+import projectCode20280.Practical_4_PriorityQueues.Entry;
 
 import java.util.ArrayList;
 

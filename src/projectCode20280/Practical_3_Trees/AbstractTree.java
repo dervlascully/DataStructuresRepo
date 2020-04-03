@@ -1,6 +1,6 @@
-package projectCode20280.Practical_3;
-import projectCode20280.Practical_2.Queue;
-import projectCode20280.Practical_2.LinkedQueue;
+package projectCode20280.Practical_3_Trees;
+import projectCode20280.Practical_2_StacksAndQueues.Queue;
+import projectCode20280.Practical_2_StacksAndQueues.LinkedQueue;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

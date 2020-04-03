@@ -1,4 +1,4 @@
-package projectCode20280.Practical_2;
+package projectCode20280.Practical_2_StacksAndQueues;
 
 public class ArrayStack<E> implements Stack<E>{
 

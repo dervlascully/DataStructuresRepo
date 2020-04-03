@@ -1,6 +1,4 @@
-package projectCode20280.Practical_3;
-
-import java.util.LinkedList;
+package projectCode20280.Practical_3_Trees;
 
 public class Test {
 

@@ -1,4 +1,4 @@
-package projectCode20280.Practical_4;
+package projectCode20280.Practical_4_PriorityQueues;
 
 
 /**

@@ -1,12 +1,11 @@
 package projectCode20280.Practical_5;
 
-import projectCode20280.Practical_4.Entry;
-import projectCode20280.Practical_4.HeapPriorityQueue;
+import projectCode20280.Practical_4_PriorityQueues.Entry;
+import projectCode20280.Practical_4_PriorityQueues.HeapPriorityQueue;
 
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WordCounter {

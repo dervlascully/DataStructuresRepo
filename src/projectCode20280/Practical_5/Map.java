@@ -1,6 +1,6 @@
 package projectCode20280.Practical_5;
 
-import projectCode20280.Practical_4.Entry;
+import projectCode20280.Practical_4_PriorityQueues.Entry;
 
 /**
  * An interface for an associative map which binds a key uniquely to a value.

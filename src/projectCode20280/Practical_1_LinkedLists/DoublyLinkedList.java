@@ -1,4 +1,4 @@
-package projectCode20280.Practical_1;
+package projectCode20280.Practical_1_LinkedLists;
 import java.util.Iterator;
 
 public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, List<E>{

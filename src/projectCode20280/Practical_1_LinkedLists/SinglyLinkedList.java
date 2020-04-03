@@ -1,5 +1,5 @@
-package projectCode20280.Practical_1;
-import projectCode20280.Practical_2.ArrayStack;
+package projectCode20280.Practical_1_LinkedLists;
+import projectCode20280.Practical_2_StacksAndQueues.ArrayStack;
 
 import java.util.Iterator;
 

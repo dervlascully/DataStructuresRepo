@@ -1,8 +1,7 @@
-package projectCode20280.Practical_4;
+package projectCode20280.Practical_4_PriorityQueues;
 
 import java.util.ArrayList;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 /**

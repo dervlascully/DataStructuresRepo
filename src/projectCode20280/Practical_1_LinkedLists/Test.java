@@ -1,4 +1,4 @@
-package projectCode20280.Practical_1;
+package projectCode20280.Practical_1_LinkedLists;
 
 public class Test {
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
-package projectCode20280.Practical_2;
+package projectCode20280.Practical_2_StacksAndQueues;
 
 
-import projectCode20280.Practical_1.CircularlyLinkedList;
+import projectCode20280.Practical_1_LinkedLists.CircularlyLinkedList;
 
 public class LinkedQueue<E> implements Queue<E> {
 

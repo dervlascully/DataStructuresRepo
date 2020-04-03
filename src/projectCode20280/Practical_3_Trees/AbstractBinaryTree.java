@@ -1,4 +1,4 @@
-package projectCode20280.Practical_3;
+package projectCode20280.Practical_3_Trees;
 
 import java.util.List;
 import java.util.ArrayList;

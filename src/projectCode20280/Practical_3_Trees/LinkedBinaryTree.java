@@ -1,4 +1,4 @@
- package projectCode20280.Practical_3;
+ package projectCode20280.Practical_3_Trees;
 
 public class LinkedBinaryTree<E extends Comparable<E>> extends AbstractBinaryTree<E> {
 
