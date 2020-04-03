@@ -1,8 +1,6 @@
-package projectCode20280.Practical_5;
+package projectCode20280.Practical_5_HashMaps;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Main {
 
@@ -11,7 +9,7 @@ public class Main {
 //        // Key: word, Value: word count
 //        ChainHashMap<String, Integer> wordCounter = new ChainHashMap<>();
 //
-//        File file = new File("/Users/DervlaScully/Desktop/2nd Year Semester 2/Data Structures/datastructures-dervlascully/src/projectCode20280/Practical_5/sample_text");
+//        File file = new File("/Users/DervlaScully/Desktop/2nd Year Semester 2/Data Structures/datastructures-dervlascully/src/projectCode20280/Practical_5_HashMaps/sample_text");
 //        try {
 //            Scanner s = new Scanner(file);
 //

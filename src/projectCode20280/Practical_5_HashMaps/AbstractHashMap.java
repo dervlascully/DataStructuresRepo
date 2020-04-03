@@ -1,6 +1,5 @@
-package projectCode20280.Practical_5;
+package projectCode20280.Practical_5_HashMaps;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**

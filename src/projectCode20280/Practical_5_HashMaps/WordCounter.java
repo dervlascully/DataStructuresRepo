@@ -1,4 +1,4 @@
-package projectCode20280.Practical_5;
+package projectCode20280.Practical_5_HashMaps;
 
 import projectCode20280.Practical_4_PriorityQueues.Entry;
 import projectCode20280.Practical_4_PriorityQueues.HeapPriorityQueue;
@@ -15,7 +15,7 @@ public class WordCounter {
         /* Key: word, Value: frequency */
         ChainHashMap<String, Integer> wordCounter = new ChainHashMap<>();
 
-        File file = new File("/Users/DervlaScully/Desktop/2nd Year Semester 2/Data Structures/datastructures-dervlascully/src/projectCode20280/Practical_5/sample_text");
+        File file = new File("/Users/DervlaScully/Desktop/2nd Year Semester 2/Data Structures/datastructures-dervlascully/src/projectCode20280/Practical_5_HashMaps/sample_text");
 
         try {
             Scanner s = new Scanner(file);
