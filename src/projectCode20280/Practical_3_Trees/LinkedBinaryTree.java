@@ -264,17 +264,19 @@
     public E set(Position<E> p, E e) throws IllegalArgumentException {
         Node<E> node = validate(p);
         E temp = node.getElement();
-        Node<E> parent = node.getParent();
-
-
-
-        if(node != root && parent.getLeft() == node)
-            parent.setLeft(node);
-
-        else if(node != root && parent.getRight() == node)
-            parent.setRight(node);
         node.setElement(e);
         return temp;
+
+
+//        Node<E> parent = node.getParent();
+//
+//        if(node != root && parent.getLeft() == node)
+//            parent.setLeft(node);
+//
+//        else if(node != root && parent.getRight() == node)
+//            parent.setRight(node);
+//        node.setElement(e);
+//        return temp;
     }
 
     /**
