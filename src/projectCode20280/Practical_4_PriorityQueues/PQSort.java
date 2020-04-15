@@ -65,8 +65,8 @@ public class PQSort {
     public static void main2(String[] args) {
 
         System.out.println("\n[n, time (nanoseconds)]\n");
-        int n = 50;
-        while(n <= 110) {
+        int n = 100;
+        while(n <= 10000) {
 
             LinkedList<Integer> arr = new Random().ints(0, 1000).distinct().limit(n).boxed().collect(Collectors.toCollection(LinkedList::new));
             final long startTime = System.nanoTime();

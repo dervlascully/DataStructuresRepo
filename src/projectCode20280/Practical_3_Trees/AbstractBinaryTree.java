@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * by a concrete subclass: size, root, parent, left, right.
  *
  */
-public abstract class AbstractBinaryTree<E> extends AbstractTree<E>
+public abstract class AbstractBinaryTree<E extends Comparable<E>> extends AbstractTree<E>
         implements BinaryTree<E> {
 
     /**

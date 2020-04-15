@@ -4,7 +4,7 @@ package projectCode20280.Practical_3_Trees;
  * An interface for a binary tree, in which each node has at most two children.
  *
  */
-public interface BinaryTree<E> extends Tree<E> {
+public interface BinaryTree<E extends Comparable<E>> extends Tree<E> {
 
     /**
      * Returns the Position of p's left child (or null if no child exists).

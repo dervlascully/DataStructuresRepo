@@ -1,5 +1,6 @@
 package projectCode20280.Practical_5_HashMaps;
 
+import projectCode20280.Practical_4_PriorityQueues.DefaultComparator;
 import projectCode20280.Practical_4_PriorityQueues.Entry;
 
 import java.util.Iterator;
@@ -14,7 +15,7 @@ import java.util.Iterator;
  * use of a presumed implementation of the entrySet method.
  *
  */
-public abstract class AbstractMap<K, V> implements Map<K, V> {
+public abstract class AbstractMap<K extends Comparable<K>, V extends Comparable<V>> implements Map<K, V> {
 
     /**
      * Tests whether the map is empty.
@@ -31,7 +32,7 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
      * A concrete implementation of the Entry interface to be used within a Map
      * implementation.
      */
-    protected static class MapEntry<K, V> implements Entry<K, V> {
+    protected static class MapEntry<K extends Comparable<K>, V extends Comparable<V>> implements Entry<K, V> {
         private K k; // key
         private V v; // value
 
@@ -63,6 +64,12 @@ public abstract class AbstractMap<K, V> implements Map<K, V> {
         /** Returns string representation (for debugging only) */
         public String toString() {
             return "<" + k + ", " + v + ">";
+        }
+
+        private final DefaultComparator<K> comparator  = new DefaultComparator<>();
+        @Override
+        public int compareTo(Entry<K, V> o) {
+            return comparator.compare(this.getKey(), o.getKey());
         }
 
     } // ----------- end of nested MapEntry class -----------

@@ -8,7 +8,7 @@ import java.util.Comparator;
  * An implementation of a priority queue using an array-based heap.
  */
 
-public class HeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
+public class HeapPriorityQueue<K extends Comparable<K>,V extends Comparable<V>> extends AbstractPriorityQueue<K,V> {
 
     protected ArrayList<Entry<K, V>> heap = new ArrayList<>();
 

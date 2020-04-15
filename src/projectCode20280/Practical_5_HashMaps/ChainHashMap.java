@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * Map implementation using hash table with separate chaining.
  */
 
-public class ChainHashMap<K, V> extends AbstractHashMap<K, V> {
+public class ChainHashMap<K extends Comparable<K>, V extends Comparable<V>> extends AbstractHashMap<K, V> {
     // a fixed capacity array of UnsortedTableMap that serve as buckets
     private UnsortedTableMap<K, V>[] table; // initialized within createTable
 

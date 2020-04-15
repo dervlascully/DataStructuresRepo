@@ -4,7 +4,7 @@ package projectCode20280.Practical_4_PriorityQueues;
 /**
  * Interface for the priority queue ADT.
  */
-public interface PriorityQueue<K,V> {
+public interface PriorityQueue<K extends Comparable<K>,V extends Comparable<V>> {
 
     /**
      * Returns the number of items in the priority queue.

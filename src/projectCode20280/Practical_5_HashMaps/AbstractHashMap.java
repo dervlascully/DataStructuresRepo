@@ -16,7 +16,7 @@ import java.util.Random;
  * and for accurately maintaining the protected member, n,
  * to reflect changes within bucketPut and bucketRemove.
  */
-public abstract class AbstractHashMap<K, V> extends AbstractMap<K, V> {
+public abstract class AbstractHashMap<K extends Comparable<K>, V extends Comparable<V>> extends AbstractMap<K, V> {
     protected int n = 0;                 // number of entries in the dictionary
     protected int capacity;              // length of the table
     private int prime;                   // prime factor

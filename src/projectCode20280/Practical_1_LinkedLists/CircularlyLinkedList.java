@@ -109,14 +109,24 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
     public E removeLast(){
         if(isEmpty()) throw new RuntimeException("Cannot remove node: list is empty.");
 
+//        Node<E> current = tail.getNext();
+////        E temp = current.getElement();
+////        while(current.getNext() != tail)
+////            current = current.getNext();
+////
+////        current.setNext(tail.getNext());
+////        tail = current;
+////        size--;
+////        return temp;
+
         Node<E> current = tail.getNext();
-        E temp = current.getElement();
-        while(current.getNext() != tail)
+        E temp = tail.getElement();
+        while(current.getNext() != tail) // we want current to get to the node before the last node
             current = current.getNext();
 
         current.setNext(tail.getNext());
         tail = current;
-        size--;
+        size --;
         return temp;
     }
 
@@ -136,12 +146,16 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
     public void add(int position, E element){
         Node current = tail.getNext();
 
-        if(position > size-1) {
+        if(position > size) {
             throw new RuntimeException("Cannot add node. Position out of bounds.");
         }
 
         if(position == 0)
             addFirst(element);
+
+        if(position == size){
+            addLast(element);
+        }
 
         else{
             for(int i=1; i<position; i++){
@@ -157,6 +171,7 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
     }
 
     public E remove(int position){
+
         if (position > size-1) {
             throw new RuntimeException("Cannot remove node. Position out of bounds.");
         }

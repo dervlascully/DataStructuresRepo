@@ -6,7 +6,7 @@ import projectCode20280.Practical_4_PriorityQueues.Entry;
  * An interface for an associative map which binds a key uniquely to a value.
  * This interface is a simplified version of java.util.Map.
  */
-public interface Map<K, V> {
+public interface Map<K extends Comparable<K>, V extends Comparable<V>> {
 
     /**
      * Returns the number of entries in the map.

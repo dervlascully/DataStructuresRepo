@@ -158,7 +158,7 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
     public void add(int position, E element){
         Node current = head;
 
-        if(position > size-1) {
+        if(position > size) {
             throw new RuntimeException("Cannot add node. Position out of bounds.");
         }
 
@@ -239,10 +239,18 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
 
         if (position > size-1) {
             throw new RuntimeException("Cannot remove node. Position out of bounds.");
-        } else {
+        }
+
+        else {
             for (int i = 0; i < position; i++) {
                 previous = current;
                 current = current.next;
+            }
+
+            if(current == head){
+                head = current.next;
+                size--;
+                return current.getElement();
             }
 
             E temp = current.getElement();

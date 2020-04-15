@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * An implementation of a map using an unsorted table.
  */
 
-public class UnsortedTableMap<K, V> extends AbstractMap<K, V> {
+public class UnsortedTableMap<K extends Comparable<K>, V extends Comparable<V>> extends AbstractMap<K, V> {
 
     /** Underlying storage for the map of entries. */
     private ArrayList<MapEntry<K, V>> table = new ArrayList<>();

@@ -118,14 +118,16 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         if(isEmpty())
             throw new RuntimeException("Cannot insert. List is empty.");
 
-            while(current != null ){     // while( current.getNext() != null) - will stop at node before trailer
+        while(current != null ){     // while( current.getNext() != null) - will stop at node before trailer
 
-            if(current.getElement().equals(key)){
+            if(current.getElement() == key){
                 addBetween(element, current, current.getNext());
-                return; }
+                return;
+            }
 
             else
-                current = current.getNext(); }
+                current = current.getNext();
+        }
 
         throw new RuntimeException("Cannot inset node. No node with 'key' value exists.");
     }

@@ -1,6 +1,9 @@
 package projectCode20280.Practical_1_LinkedLists;
 
-public class Test {
+import static org.junit.Assert.assertTrue;
+
+public class Main {
+
     public static void main(String[] args) {
 
         System.out.println("\nPractical 1 - Linked Lists\n");
