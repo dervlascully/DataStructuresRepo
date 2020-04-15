@@ -427,14 +427,5 @@
         return comparator.compare(first, second);
     }
 
-
-
-
-
-    public static void main(String [] args) {
-
-
-
-    }
 }
 

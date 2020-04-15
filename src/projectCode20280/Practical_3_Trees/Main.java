@@ -1,6 +1,6 @@
 package projectCode20280.Practical_3_Trees;
 
-public class Test {
+public class Main {
 
     public static void main(String[] args) {
 
