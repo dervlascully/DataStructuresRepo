@@ -2,7 +2,7 @@ package projectCode20280.Practical_2_StacksAndQueues;
 
 import projectCode20280.Practical_1_LinkedLists.SinglyLinkedList;
 
-public class Test {
+public class Main {
     public static void main(String[] args) {
 
         System.out.println("\nPractical 2 - Stacks & Queues");
