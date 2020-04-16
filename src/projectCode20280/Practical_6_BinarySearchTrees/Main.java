@@ -1,5 +1,7 @@
 package projectCode20280.Practical_6_BinarySearchTrees;
 
+import projectCode20280.Practical_4_PriorityQueues.Entry;
+
 public class Main {
     public static void main(String[] args) {
         TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
@@ -26,7 +28,7 @@ public class Main {
 
          */
 
-//        BinaryTreePrinter<Entry<Integer, Integer>> btp = new BinaryTreePrinter<>(treeMap.tree);
-//        System.out.println(btp.print());
+        BinaryTreePrinter<Entry<Integer, Integer>> btp = new BinaryTreePrinter<>(treeMap.tree);
+        System.out.println(btp.print());
     }
 }
