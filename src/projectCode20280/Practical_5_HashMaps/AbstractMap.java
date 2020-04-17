@@ -92,6 +92,24 @@ public abstract class AbstractMap<K extends Comparable<K>, V extends Comparable<
         public void remove() {
             throw new UnsupportedOperationException("remove not supported");
         }
+
+//        @Override
+//        public String toString(){
+//            String s = "[";
+//            for(Iterator<K> it = new KeyIterator(); it.hasNext();){
+//                s += it.next() + ", ";
+//            }
+//            s = s.substring(0, s.length()-2); // get rid of last comma and space
+//            return s + "]";
+//        }
+
+/*
+for(Iterator<E> it =  new ListIterator(); it.hasNext();){
+            E element = it.next();
+            str += element + " ";
+
+        }
+ */
     } // ----------- end of nested KeyIterator class -----------
 
     // ---------------- nested KeyIterable class ----------------
@@ -99,6 +117,20 @@ public abstract class AbstractMap<K extends Comparable<K>, V extends Comparable<
         public Iterator<K> iterator() {
             return new KeyIterator();
         }
+
+        @Override
+        public String toString(){
+            String s = "[";
+            for(Iterator<K> it = new KeyIterator(); it.hasNext();){
+                s += it.next() + ", ";
+            }
+            s = s.substring(0, s.length()-2); // get rid of last comma and space
+            return s + "]";
+        }
+
+//        public String toString(){
+//
+//        }
     } // ----------- end of nested KeyIterable class -----------
 
     /**

@@ -15,6 +15,8 @@
         public Node<E> right;
 
         public String toString(){
+            if(element == null)
+                return "\u29B0";
 
             return getElement().toString();
         }
@@ -428,6 +430,7 @@
     public int compare(E first, E second){
         return comparator.compare(first, second);
     }
+
 
 }
 

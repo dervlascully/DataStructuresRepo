@@ -234,17 +234,17 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
 
 
     public String toString(){
-        String str = "";
+        String str = "[";
 
         Iterator<E> it =  new ListIterator();
         it.next(); // get ride of first null
 
         for(int i=0; i<size; i++){
             E element = it.next();
-            str += element + " ";
+            str += element + ", ";
         }
-
-        return str;
+        str = str.substring(0, str.length()-2);
+        return str + "]";
     }
 
 
@@ -257,7 +257,8 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         Node current;
 
         public ListIterator(){
-            current = header;
+            if(header == null)
+                current = header;
         }
 
 
@@ -270,6 +271,19 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
             E res = (E) current.getElement();
             current = current.getNext();
             return res;
+        }
+
+        public String toString(){
+            String s = "[";
+            Iterator<E> it = new ListIterator();
+            it.next();
+            while( it.hasNext()){
+                E element = it.next();
+                if(it.hasNext())
+                    s += it.next() + ", ";
+            }
+            s = s.substring(0, s.length() - 2);
+            return s + "]";
         }
     }
 

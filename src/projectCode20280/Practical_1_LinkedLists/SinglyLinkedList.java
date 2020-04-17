@@ -300,13 +300,14 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
     }
 
     public String toString(){
-        String str = "";
+        String str = "[";
         for(Iterator<E> it =  new ListIterator(); it.hasNext();){
             E element = it.next();
-            str += element + " ";
+            str += element + ", ";
 
         }
-        return str;
+        str = str.substring(0, str.length()-2);
+        return str + "]";
     }
 
     public boolean isEmpty(){

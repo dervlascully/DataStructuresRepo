@@ -30,6 +30,6 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     public String toString(){
-        return "top -> " + list.toString();
+        return list.toString();
     }
 }

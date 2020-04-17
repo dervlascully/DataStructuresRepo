@@ -39,7 +39,7 @@ public class LinkedQueue<E> implements Queue<E> {
     }
 
     public String toString(){
-        return "front -> " + queue.toString() + " <- rear";
+        return queue.toString();
     }
 
 }

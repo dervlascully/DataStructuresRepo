@@ -131,16 +131,17 @@ public class CircularlyLinkedList<E>  implements Iterable<E>, List<E>{
     }
 
     public String toString(){
-        String str = "";
+        String str = "[";
 
         Iterator<E> it =  new ListIterator();
 
         for(int i=0; i<size; i++){
             E element = it.next();
-            str += element + " ";
+            str += element + ", ";
         }
+        str = str.substring(0, str.length()-2);
 
-        return str;
+        return str + "]";
     }
 
     public void add(int position, E element){
