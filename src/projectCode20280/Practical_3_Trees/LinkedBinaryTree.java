@@ -7,7 +7,7 @@
 
 
     /** Nested static class for a binary tree node. */
-    protected static class Node<E> implements Position<E> {
+    public static class Node<E> implements Position<E> {
         // element, parent node, left child node
         public E element;
         public Node<E> parent;
@@ -431,6 +431,172 @@
         return comparator.compare(first, second);
     }
 
+     // Assignment 2
+
+     // Helper Function
+     public boolean mirrorSymmetryHelper(Node<E> node1, Node<E> node2){
+         // if both trees are empty, then they are mirror image
+        if(node1 == null && node2 == null)
+            return true;
+
+         // For two trees to be mirror images, the following
+         // conditions must be true
+         //  - left subtree of left tree and right subtree
+         //      of right tree have to be mirror images
+         //  - right subtree of left tree and left subtree
+         //      of right tree have to be mirror images
+        if(node1 != null && node2 != null){
+            return (mirrorSymmetryHelper(node1.left, node2.right)&&mirrorSymmetryHelper(node1.right, node2.left));
+        }
+         return false;
+     }
+
+     public boolean mirrorSymmetryStructure(){
+        return mirrorSymmetryHelper(root, root);
+     }
+
+     public void mirror(){
+        root = mirror(root);
+     }
+
+     public Node<E> mirror(Node<E> node){
+        if(node == null)
+            return node;
+
+        Node<E> left = mirror(node.left);
+        Node<E> right = mirror(node.right);
+
+        // swap left and right pointers
+         node.left = right;
+         node.right = left;
+
+         return node;
+     }
+
+     /*
+     Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - 2*Dist(root, lca)
+    'n1' and 'n2' are the two given keys
+    'root' is root of given Binary Tree.
+    'lca' is lowest common ancestor of n1 and n2
+    Dist(n1, n2) is the distance between n1 and n2.
+      */
+
+     public int findDistance(E n1, E n2) {
+         if(! entryInTree(n1) || ! entryInTree(n2))throw new IllegalArgumentException("Node not found in tree");
+
+         // Distance from root -> n1
+         int x = Pathlength(root, n1) - 1;
+
+         // Distance from root -> n2
+         int y = Pathlength(root, n2) - 1;
+
+         // Lowest common ancestor of n1 and n2
+         E lca = findLCA(root, n1, n2).element;
+
+         // Distance from root -> lca
+         int lcaDistance = Pathlength(root, lca) - 1;
+
+         // Distance from n1 -> n2  = (root -> n1) + (root -> n2) - 2*(root -> lca)
+         int result = (x + y) - 2 * lcaDistance;
+
+         return result;
+     }
+
+     public int Pathlength(Node root, E n1) {
+         if (root != null) {
+             int x = 0;
+             if ((root.element == n1) || (x = Pathlength(root.left, n1)) > 0 || (x = Pathlength(root.right, n1)) > 0)
+                 return x + 1;
+
+             return 0;
+         }
+         return 0;
+     }
+
+     /*
+     Start will the root.
+     If any of the given keys (n1 and n2) matches with root, then root is LCA
+     (assuming that both keys are present). If root doesn’t match with any of
+     the keys, we recur for left and right subtree.
+     The node which has one key present in its left subtree and the other key
+     present in right subtree is the LCA.
+      */
+
+     public Node<E> findLCA(Node<E> root, E n1, E n2) {
+
+         // if either key matches with root then root is LCA
+         if (root != null) {
+             if (root.element == n1 || root.element == n2) {
+                 return root;
+             }
+
+             Node<E> left = findLCA(root.left, n1, n2);
+             Node<E> right = findLCA(root.right, n1, n2);
+
+             if (left != null && right != null) {
+                 return root;
+             }
+             if (left != null) {
+                 return left;
+             }
+             if (right != null) {
+                 return right;
+             }
+         }
+         return null;
+     }
+
+     // Check if a value is a valid element in the tree
+     public boolean entryInTree(E e){
+         for(E element : this){ // iterate through tree
+             if(element == e)
+                 return true;
+         }
+
+         return false;
+     }
+
+     public void createLevelOrder(E[] arr){
+         if(!arrayIsSorted(arr)){
+             arr = arrayAscending(arr);
+         }
+         if(isEmpty()){
+             int length = arr.length;
+             for(int i = length/2; i <length; i++){
+                 insert(arr[i]);
+             }
+
+             for(int i=0; i < length/2; i++){
+                 insert(arr[i]);
+             }
+         }
+     }
+
+     private E[] arrayAscending(E[] arr){
+         for (int i = 0; i < arr.length; i++)
+         {
+             for (int j = i + 1; j < arr.length; j++) {
+                 if (arr[i].compareTo(arr[j]) == 1)
+                 {
+                     E temp = arr[i];
+                     arr[i] = arr[j];
+                     arr[j] = temp;
+                 }
+             }
+         }
+         return arr;
+     }
+
+     private boolean arrayIsSorted(E[] a)
+     {
+         int i;
+         for(i = 0; i < a.length - 2; i ++);{
+            if (a[i].compareTo(a[i+1]) == 1) {
+             return false;
+            }
+        }
+        return true;
+     }
 
 }
 

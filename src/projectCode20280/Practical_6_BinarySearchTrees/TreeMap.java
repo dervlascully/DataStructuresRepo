@@ -8,6 +8,7 @@ import projectCode20280.Practical_4_PriorityQueues.DefaultComparator;
 import projectCode20280.Practical_4_PriorityQueues.Entry;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * An implementation of a sorted map using a binary search tree.
@@ -157,8 +158,10 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
     public V get(K key) throws IllegalArgumentException {
         for(Position<Entry<K, V>> p : tree.inorder()){
             if(isInternal(p)){
-                if(p.getElement().getKey() == key)
+                if(p.getElement().getKey() == key) {
+                    rebalanceAccess(p);  // hook for balanced tree
                     return p.getElement().getValue();
+                }
             }
         }
         return null;
@@ -182,6 +185,7 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
 
         if(isExternal(p)){
             expandExternal(p, entry); // add new node
+            rebalanceInsert(p);  // hook for balanced tree
             return null;
         }
 
@@ -189,6 +193,7 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         else{
             V old = p.getElement().getValue();
             set(p, entry);
+            rebalanceAccess(p);  // hook for balanced tree
             return old;
         }
     }
@@ -206,20 +211,22 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         Position<Entry<K, V>> p = treeSearch(root(), key);
 
         if(isExternal(p)){ // key not found
+            rebalanceAccess(p);  // hook for balanced tree
             return null;
         }
 
         else{
             V old = p.getElement().getValue();
             if(isInternal(left(p)) && isInternal(right(p))){ // both internal
-                    Position<Entry<K, V>> r = treeMax(left(p));
-                    set(p, r.getElement());
-                    p = r;
+                    Position<Entry<K, V>> replacement = treeMax(left(p));
+                    set(p, replacement.getElement());
+                    p = replacement;
             }
             Position<Entry<K, V>> leaf = isExternal(left(p)) ? left(p) : right(p);
             Position<Entry<K, V>> sib = sibling(leaf); // either the left or right sibling
             remove(leaf);
-            remove(p);
+            remove(p); // sib is promoted in p's place
+            rebalanceDelete(sib); // hook for balanced tree
             return old;
         }
 
@@ -391,9 +398,31 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
      */
     @Override
     public Iterable<Entry<K, V>> subMap(K fromKey, K toKey) throws IllegalArgumentException {
-        // TODO
-        return null;
+        ArrayList<Entry<K, V>> buffer = new ArrayList<>(size());
+        if(compare(fromKey, toKey) < 0){ // ensure that fromKey < toKey
+            subMapRecurse(fromKey, toKey, root(),buffer);
+        }
+
+        return buffer;
     }
+
+    public void subMapRecurse(K fromKey, K toKey, Position<Entry<K,V>> p, ArrayList<Entry<K,V>> buffer){
+        if(isInternal(p)){
+            if(compare(p.getElement(), fromKey) < 0){
+                // p's key is less than fromKey, so any relevant entries are to the right
+                subMapRecurse(fromKey, toKey, right(p), buffer);
+            }
+            else{
+                subMapRecurse(fromKey, toKey, left(p), buffer); // first consider left subtree
+                if(compare(p.getElement(), toKey) < 0){ // p is within range
+                    buffer.add(p.getElement()); // add to buffer
+                    subMapRecurse(fromKey, toKey, right(p), buffer); // consider right subtree
+                }
+            }
+        }
+    }
+
+
 
     // remainder of class is for debug purposes only
     /** Prints textual representation of tree structure (for debug purpose only). */
@@ -421,6 +450,22 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
 
     public String toString(){
         return tree.toString();
+    }
+
+    /** Overrides the TreeMap rebalancing hook that is called after an insertion. */
+    protected void rebalanceInsert(Position<Entry<K, V>> p) { }
+
+    /** Overrides the TreeMap rebalancing hook that is called after a deletion. */
+    protected void rebalanceDelete(Position<Entry<K, V>> p) { }
+
+    /** Overrides the TreeMap rebalancing hook that is called after a node access. */
+    protected void rebalanceAccess(Position<Entry<K, V>> p) { }
+
+//    protected void rotate(Position<Entry<K, V>> p) { }
+
+    public TreeMap(Comparator<K> comp) {
+        super(comp);              // the AbstractSortedMap constructor
+        tree.addRoot(null);       // create a sentinel leaf as root
     }
 
 

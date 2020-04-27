@@ -118,7 +118,7 @@ public class HeapPriorityQueue<K extends Comparable<K>,V extends Comparable<V>> 
     @Override
     public Entry<K,V> min(){
         if(isEmpty()) return null;
-        return heap.get(size()-1); // min is the last element in the array
+        return heap.get(0); // min is the first element in the array
     }
 
     /**
@@ -144,12 +144,12 @@ public class HeapPriorityQueue<K extends Comparable<K>,V extends Comparable<V>> 
     @Override
     public Entry<K,V> removeMin(){
         if(heap.isEmpty()) return null;
-
-        Entry<K, V> answer = heap.get(0);
+        System.out.println("min " + heap.get(0).getKey() +" " + heap.get(heap.size() - 1).getKey());
+        Entry<K, V> entry = heap.get(0);
         swap(0, heap.size() - 1); // put minimum at the end
         heap.remove(heap.size() - 1); // remove it from the list
         downheap(0); // fix new root
-        return answer;
+        return entry;
     }
 
     /** Used for debugging purposes only */
@@ -162,5 +162,15 @@ public class HeapPriorityQueue<K extends Comparable<K>,V extends Comparable<V>> 
             if (right < heap.size() && compare(heap.get(right), heap.get(j)) < 0)
                 System.out.println("Invalid right child relationship");
         }
+    }
+
+    public String toString(){
+        String s = "[";
+        for(int i=0; i<heap.size(); i++){
+            s += heap.get(i).getValue() + ", ";
+        }
+
+        s = s.substring(0, s.length() - 2);
+        return s + "]";
     }
 }
