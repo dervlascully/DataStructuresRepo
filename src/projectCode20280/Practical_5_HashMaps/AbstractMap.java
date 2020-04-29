@@ -93,26 +93,7 @@ public abstract class AbstractMap<K extends Comparable<K>, V extends Comparable<
             throw new UnsupportedOperationException("remove not supported");
         }
 
-//        @Override
-//        public String toString(){
-//            String s = "[";
-//            for(Iterator<K> it = new KeyIterator(); it.hasNext();){
-//                s += it.next() + ", ";
-//            }
-//            s = s.substring(0, s.length()-2); // get rid of last comma and space
-//            return s + "]";
-//        }
-
-/*
-for(Iterator<E> it =  new ListIterator(); it.hasNext();){
-            E element = it.next();
-            str += element + " ";
-
-        }
- */
-    } // ----------- end of nested KeyIterator class -----------
-
-    // ---------------- nested KeyIterable class ----------------
+    }
     private class KeyIterable implements Iterable<K> {
         public Iterator<K> iterator() {
             return new KeyIterator();
@@ -127,11 +108,7 @@ for(Iterator<E> it =  new ListIterator(); it.hasNext();){
             s = s.substring(0, s.length()-2); // get rid of last comma and space
             return s + "]";
         }
-
-//        public String toString(){
-//
-//        }
-    } // ----------- end of nested KeyIterable class -----------
+    }
 
     /**
      * Returns an iterable collection of the keys contained in the map.
@@ -143,7 +120,7 @@ for(Iterator<E> it =  new ListIterator(); it.hasNext();){
         return new KeyIterable();
     }
 
-    // ---------------- nested ValueIterator class ----------------
+
     private class ValueIterator implements Iterator<V> {
         private Iterator<Entry<K, V>> entries = entrySet().iterator(); // reuse entrySet
 
@@ -158,14 +135,13 @@ for(Iterator<E> it =  new ListIterator(); it.hasNext();){
         public void remove() {
             throw new UnsupportedOperationException("remove not supported");
         }
-    } // ----------- end of nested ValueIterator class -----------
+    }
 
-    // ---------------- nested ValueIterable class ----------------
     private class ValueIterable implements Iterable<V> {
         public Iterator<V> iterator() {
             return new ValueIterator();
         }
-    } // ----------- end of nested ValueIterable class -----------
+    }
 
     /**
      * Returns an iterable collection of the values contained in the map. Note that

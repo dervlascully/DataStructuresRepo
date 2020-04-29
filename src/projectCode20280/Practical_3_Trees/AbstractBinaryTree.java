@@ -98,58 +98,5 @@ public abstract class AbstractBinaryTree<E extends Comparable<E>> extends Abstra
     public Iterable<Position<E>> positions() {
         return inorder();
     }
-//
-//
-//    //---------------- nested ElementIterator class ----------------
-//    // This class adapts the iteration produced by positions() to return elements.
-//    private class ElementIterator implements Iterator<E> {
-//
-//        Iterator<Position<E>> posIterator = positions().iterator();
-//
-//        public boolean hasNext() {
-//            return posIterator.hasNext();
-//        }
-//
-//        public E next() {
-//            return posIterator.next().getElement();
-//        }
-//
-//        public void remove() {
-//            posIterator.remove();
-//        }// return element!
-//    }
-//        // Returns an iterator of the elements stored in the tree. ∗/
-//         public Iterator<E> iterator() {
-//            return new ElementIterator();
-//    }
-//
-//    private void preorderSubtree(Position<E> p, List<Position<E>> snapshot){
-//        snapshot.add(p);
-//        for(Position<E> c : children(p))
-//            preorderSubtree(c, snapshot);
-//    }
-//
-//    public Iterable<Position<E>> preorder(){
-//        List<Position<E>> snapshot = new ArrayList<>();
-//        if(!isEmpty())
-//            preorderSubtree(root(), snapshot);
-//
-//        return snapshot;
-//    }
-//
-//    private void postorderSubtree(Position<E> p, List<Position<E>> snapshot){
-//        for(Position<E> c : children(p))
-//            preorderSubtree(c, snapshot);
-//
-//        snapshot.add(p);
-//    }
-//
-//    @Override
-//    public Iterable<Position<E>> postorder() {
-//        List<Position<E>> snapshot = new ArrayList<>();
-//        if(!isEmpty())
-//            postorderSubtree(root(), snapshot);
-//        return snapshot;
-//    }
 }
 

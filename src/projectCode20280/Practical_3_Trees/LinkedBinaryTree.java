@@ -346,54 +346,6 @@
         E old = n.getElement();
         return old; // return the element og the node being removed
 
-        /*
-        Node<E> temp = validate(p);
-        // validate will throw exception if not valid position
-
-        E returnValue = temp.getElement();
-        Node<E> P = temp.getParent(); // parent
-
-
-        if(temp.right == null){
-
-            // node has no children
-            if(temp.left == null) {
-
-                // if the node is the right child of its parent
-                if(P.getRight() == temp){
-                    P.setRight(null); // set right child of parent to null
-                }
-
-                // if the node is the left child of its parent
-                else if(P.getLeft() == temp){
-                    P.setLeft(P.getRight()); // set left child of parent to its current right child
-                }
-
-            }
-
-            // node has one child - left child
-            else{
-                // if the node is the right child of its parent
-                if(P.getRight() == temp){
-                    P.setRight(temp.getLeft()); // set right child of parent to null
-                }
-
-                // if the node is the left child of its parent
-                else if(P.getLeft() == temp){
-                    P.setLeft(temp.getLeft()); // set left child of parent to its current right child
-                }
-
-            }
-        }
-
-        else{
-            throw new IllegalArgumentException();
-        }
-
-        return returnValue;
-
-
-         */
 
     }
 

@@ -346,6 +346,7 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
     }
 
     private class ListIterator implements Iterator<E>{
+
         Node current;
 
         public ListIterator(){
@@ -385,6 +386,14 @@ public class SinglyLinkedList<E> implements Iterable<E>, List<E> {
         while(! stack.isEmpty()){
             this.addLast(stack.pop());
         }
+    }
+
+    public E last() {
+        Node<E> current = head;
+        while(current.next != null)
+            current = current.next;
+
+        return current.getElement();
     }
 
 

@@ -16,5 +16,4 @@ public interface Entry<K extends Comparable<K>,V extends Comparable<V>> extends 
      */
     V getValue();
 
-
 }

@@ -25,32 +25,32 @@ class DoublyLinkedListTest {
         ll.removeFirst();
         assertEquals(true, ll.isEmpty());
     }
-//
-//    @Test
-//    void testFirst() {
-//        DoublyLinkedList<Integer> ll = new DoublyLinkedList<>();
-//        ll.addFirst(-1);
-//        assertEquals(-1, ll.first());
-//
-//        ll.removeFirst();
-//        assertEquals(null, ll.first());
-//
-//
-//    }
-//
-//    @Test
-//    void testLast() {
-//        DoublyLinkedList<Integer> ll = new DoublyLinkedList<>();
-//        ll.addFirst(-1);
-//
-//        assertEquals(-1, ll.last());
-//
-//        ll.addFirst(-2);
-//        assertEquals(-1, ll.last());
-//
-//        ll.addLast(-3);
-//        assertEquals(-3, ll.last());
-//    }
+
+    @Test
+    void testFirst() {
+        DoublyLinkedList<Integer> ll = new DoublyLinkedList<>();
+        ll.addFirst(-1);
+        assertEquals(-1, ll.first());
+
+        ll.removeFirst();
+        assertEquals(null, ll.first());
+
+
+    }
+
+    @Test
+    void testLast() {
+        DoublyLinkedList<Integer> ll = new DoublyLinkedList<>();
+        ll.addFirst(-1);
+
+        assertEquals(-1, ll.last());
+
+        ll.addFirst(-2);
+        assertEquals(-1, ll.last());
+
+        ll.addLast(-3);
+        assertEquals(-3, ll.last());
+    }
 
 
     @Test
@@ -94,17 +94,17 @@ class DoublyLinkedListTest {
 
         assertEquals("[0, 1, 2, 3, 4]", ll.toString());
     }
-//
-//    @Test
-//    void testIterator() {
-//        DoublyLinkedList<Integer> ll = new DoublyLinkedList<>();
-//        for(int i = 0; i < 5; ++i) ll.addLast(i);
-//
-//        ArrayList<Integer> buf = new ArrayList<>();
-//        for(Integer i : ll) {
-//            buf.add(i);
-//        }
-//        assertEquals("[0, 1, 2, 3, 4]", buf.toString());
-//    }
+
+    @Test
+    void testIterator() {
+        DoublyLinkedList<Integer> ll = new DoublyLinkedList<>();
+        for(int i = 0; i < 5; ++i) ll.addLast(i);
+
+        ArrayList<Integer> buf = new ArrayList<>();
+        for(Integer i : ll) {
+            buf.add(i);
+        }
+        assertEquals("[0, 1, 2, 3, 4]", buf.toString());
+    }
 
 }

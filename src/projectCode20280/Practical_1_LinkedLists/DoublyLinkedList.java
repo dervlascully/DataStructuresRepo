@@ -1,7 +1,8 @@
 package projectCode20280.Practical_1_LinkedLists;
 import java.util.Iterator;
 
-public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, List<E>{
+public class DoublyLinkedList<E extends Comparable<E>>implements Iterable<E>, List<E>{
+    //  implements Iterable<E>, List<E>
 
     private static class Node<E> {
 
@@ -76,7 +77,7 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
     }
 
 
-//    *****
+
 
     public void addBetween(E element, Node<E> predecessor, Node<E> successor){
         Node<E> newest = new Node<>(element, predecessor, successor);
@@ -85,7 +86,7 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         size++;
     }
 
-    public E removeElement(Node<E> node){
+    public E remove(Node<E> node){
         E temp = node.getElement();
 
         Node<E> predecessor = node.getPrevious();
@@ -96,7 +97,6 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         return temp;
     }
 
-//    *****
 
 
 
@@ -169,7 +169,7 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         while(current != null ){  // while( current.getNext() != null) - will stop at node before trailer
 
             if(current.getElement().equals(key)){
-              removeElement(current);
+              remove(current);
               return; }
 
             else
@@ -194,7 +194,7 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         for (int i = 0; i < position; i++) { // iterate through until we get to position we are looking for
             current = current.next; }
 
-        return removeElement(current);
+        return remove(current);
 
     }
 
@@ -203,7 +203,7 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         if(isEmpty()){
             throw new RuntimeException("could not remove: list is empty");
         }
-        return removeElement(header.getNext()); // remove the first element after the header
+        return remove(header.getNext()); // remove the first element after the header
 
     }
 
@@ -211,7 +211,7 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         if(isEmpty()){
             throw new RuntimeException("could not remove: list is empty");
         }
-        return removeElement(trailer.previous);
+        return remove(trailer.previous);
     }
 
     public boolean isEmpty(){
@@ -231,23 +231,17 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
         return current.getElement();
     }
 
-
-
     public String toString(){
-        String str = "[";
-
-        Iterator<E> it =  new ListIterator();
-        it.next(); // get ride of first null
-
-        for(int i=0; i<size; i++){
-            E element = it.next();
-            str += element + ", ";
+        Node<E> current = header.next;
+        String s = "[";
+        while(current != trailer) {
+            s += current.getElement() + ", ";
+            current = current.next;
         }
-        str = str.substring(0, str.length()-2);
-        return str + "]";
+
+        s = s.substring(0, s.length()-2);
+        return s + "]";
     }
-
-
 
     public Iterator<E> iterator(){
         return new ListIterator();
@@ -256,36 +250,21 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
     private class ListIterator implements Iterator<E> {
         Node current;
 
-        public ListIterator(){
-            if(header == null)
-                current = header;
+        public ListIterator() {
+            current = header.next;
         }
 
-
-        public boolean hasNext(){
-            return current != null;
+        public boolean hasNext() {
+            return current != trailer;
         }
-
         @Override
         public E next(){
-            E res = (E) current.getElement();
+            E res = (E)current.getElement();
             current = current.getNext();
             return res;
         }
-
-        public String toString(){
-            String s = "[";
-            Iterator<E> it = new ListIterator();
-            it.next();
-            while( it.hasNext()){
-                E element = it.next();
-                if(it.hasNext())
-                    s += it.next() + ", ";
-            }
-            s = s.substring(0, s.length() - 2);
-            return s + "]";
-        }
     }
+
 
     // Assignment 1 Q5 - Selection Sort
 
@@ -410,6 +389,17 @@ public class DoublyLinkedList<E extends Comparable<E>> implements Iterable<E>, L
             b = b.next;
         }
     }
+
+    // Returns (but does not remove) the first element of the list. ∗
+    public E first( ) {
+        if (isEmpty()) return null;
+        return header.getNext().getElement(); // first element is beyond header
+    }
+        // Returns (but does not remove) the last element of the list. ∗/
+         public E last() {
+            if (isEmpty()) return null;
+            return trailer.getPrevious().getElement(); // last element is before trailer
+         }
 
 
 

@@ -38,19 +38,19 @@ class SinglyLinkedListTest {
 
     }
 
-//    @Test
-//    void testLast() {
-//        SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
-//        ll.addFirst(-1);
-//
-//        assertEquals(-1, ll.last());
-//
-//        ll.addFirst(-2);
-//        assertEquals(-1, ll.last());
-//
-//        ll.addLast(-3);
-//        assertEquals(-3, ll.last());
-//    }
+    @Test
+    void testLast() {
+        SinglyLinkedList<Integer> ll = new SinglyLinkedList<>();
+        ll.addFirst(-1);
+
+        assertEquals(-1, ll.last());
+
+        ll.addFirst(-2);
+        assertEquals(-1, ll.last());
+
+        ll.addLast(-3);
+        assertEquals(-3, ll.last());
+    }
 
 
     @Test

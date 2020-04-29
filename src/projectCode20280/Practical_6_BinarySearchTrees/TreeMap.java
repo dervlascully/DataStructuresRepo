@@ -10,6 +10,7 @@ import projectCode20280.Practical_7_AVL_Splay.BalanceableBinaryTree;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * An implementation of a sorted map using a binary search tree.
@@ -17,9 +18,6 @@ import java.util.Comparator;
 
 public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends AbstractSortedMap<K, V> {
     // extends Comparable<K>
-
-    // We reuse the LinkedBinaryTree class. A limitation here is that we only use the key.
-
 
     protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree();
 //    protected LinkedBinaryTree<Entry<K,V>> tree = new LinkedBinaryTree<>();
@@ -415,9 +413,9 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         if(compare(fromKey, toKey) < 0){ // ensure that fromKey < toKey
             subMapRecurse(fromKey, toKey, root(),buffer);
         }
-
         return buffer;
     }
+
 
     public void subMapRecurse(K fromKey, K toKey, Position<Entry<K,V>> p, ArrayList<Entry<K,V>> buffer){
         if(isInternal(p)){
@@ -434,8 +432,6 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
             }
         }
     }
-
-
 
     // remainder of class is for debug purposes only
     /** Prints textual representation of tree structure (for debug purpose only). */
@@ -460,7 +456,6 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         return comparator.compare(a.getKey(), b.getKey());
     }
 
-
     public String toString(){
         return tree.toString();
     }
@@ -482,5 +477,13 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         tree.addRoot(null);       // create a sentinel leaf as root
     }
 
-
+//    @Override
+//    public Iterable<K> keySet() {
+//        ArrayList<K> buffer = new ArrayList<>(size());
+//        for(Position<Entry<K, V>> p : tree.inorder()){ // inorder traversal of the tree
+//            if(isInternal(p)) // filter out 'null's
+//                buffer.add(p.getElement().getKey());
+//        }
+//        return buffer;
+//    }
 }
