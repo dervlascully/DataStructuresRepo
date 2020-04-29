@@ -6,6 +6,7 @@ import projectCode20280.Practical_3_Trees.Position;
 import projectCode20280.Practical_3_Trees.Tree;
 import projectCode20280.Practical_4_PriorityQueues.DefaultComparator;
 import projectCode20280.Practical_4_PriorityQueues.Entry;
+import projectCode20280.Practical_7_AVL_Splay.BalanceableBinaryTree;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,7 +19,10 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
     // extends Comparable<K>
 
     // We reuse the LinkedBinaryTree class. A limitation here is that we only use the key.
-    protected LinkedBinaryTree<Entry<K, V>> tree = new LinkedBinaryTree<Entry<K,V>>();
+
+
+    protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree();
+//    protected LinkedBinaryTree<Entry<K,V>> tree = new LinkedBinaryTree<>();
 
     /** Constructs an empty map using the natural ordering of keys. */
     public TreeMap() {
@@ -38,8 +42,8 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
 
     /** Utility used when inserting a new entry at a leaf of the tree */
     private void expandExternal(Position<Entry<K, V>> p, Entry<K, V> entry) {
-        tree.set(p, entry);
-        tree.addLeft(p, null);
+        tree.set(p, entry); // store new entry at p
+        tree.addLeft(p, null); // add new sentinel leaves as children
         tree.addRight(p, null);
     }
 
@@ -94,19 +98,20 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
      */
     private Position<Entry<K, V>> treeSearch(Position<Entry<K, V>> p, K key) {
         if(isExternal(p))
-            return p; // key not found
+            return p; // key not found, return the final leaf
 
         int c = compare(key, p.getElement());
 
             // key we are looking for == key at position
+            // key found, return its position
         if(c == 0)
             return p;
 
-            // key we are looking for < key at position - search left
+            // key we are looking for < key at position - search left subtree
         else if(c < 0)
             return treeSearch(left(p), key);
 
-            // key we are looking for > key at position - search right
+            // key we are looking for > key at position - search right subtree
         else
             return treeSearch(right(p), key);
 
@@ -156,8 +161,14 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
      */
     @Override
     public V get(K key) throws IllegalArgumentException {
+
+        System.out.println("\n");
         for(Position<Entry<K, V>> p : tree.inorder()){
+
             if(isInternal(p)){
+                // debugging
+                System.out.println("key: " + p.getElement().getKey());
+                System.out.println("value: " + p.getElement().getValue());
                 if(p.getElement().getKey() == key) {
                     rebalanceAccess(p);  // hook for balanced tree
                     return p.getElement().getValue();
@@ -183,6 +194,7 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         Entry<K,V> entry = new MapEntry<>(key, value);
         Position<Entry<K, V>> p = treeSearch(root(), key); // find entry with key 'key' in the tree. Start search at the root
 
+
         if(isExternal(p)){
             expandExternal(p, entry); // add new node
             rebalanceInsert(p);  // hook for balanced tree
@@ -194,6 +206,7 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
             V old = p.getElement().getValue();
             set(p, entry);
             rebalanceAccess(p);  // hook for balanced tree
+
             return old;
         }
     }
@@ -453,7 +466,8 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
     }
 
     /** Overrides the TreeMap rebalancing hook that is called after an insertion. */
-    protected void rebalanceInsert(Position<Entry<K, V>> p) { }
+    protected void rebalanceInsert(Position<Entry<K, V>> p) {
+    }
 
     /** Overrides the TreeMap rebalancing hook that is called after a deletion. */
     protected void rebalanceDelete(Position<Entry<K, V>> p) { }

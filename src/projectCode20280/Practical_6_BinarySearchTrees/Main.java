@@ -7,7 +7,8 @@ public class Main {
         TreeMap<Integer, Integer> treeMap = new TreeMap<Integer, Integer>();
 
 
-        Integer[] arr = new Integer[] {44, 17, 88, 8, 32, 65, 82, 97, 28, 54, 22, 93, 21, 29, 76, 80};
+//        Integer[] arr = new Integer[] {44, 17, 88, 8, 32, 65, 82, 97, 28, 54, 22, 93, 21, 29, 76, 80};
+        Integer[] arr = new Integer[] {5, 3, 10, 2, 4, 1, 7, 11, 6, 9, 8, 12};
         for(Integer i: arr) treeMap.put(i, i);
 
         System.out.println(treeMap);
@@ -29,6 +30,11 @@ public class Main {
          */
 
         BinaryTreePrinter<Entry<Integer, Integer>> btp = new BinaryTreePrinter<>(treeMap.tree);
+        System.out.println(btp.print());
+
+        treeMap.remove(5);
+
+        btp = new BinaryTreePrinter<>(treeMap.tree);
         System.out.println(btp.print());
     }
 }

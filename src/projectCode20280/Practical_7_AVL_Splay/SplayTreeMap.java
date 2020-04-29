@@ -1,5 +1,6 @@
 package projectCode20280.Practical_7_AVL_Splay;
 
+import projectCode20280.Practical_3_Trees.LinkedBinaryTree;
 import projectCode20280.Practical_3_Trees.Position;
 import projectCode20280.Practical_4_PriorityQueues.Entry;
 import projectCode20280.Practical_6_BinarySearchTrees.TreeMap;
@@ -9,6 +10,8 @@ import java.util.Comparator;
 public class SplayTreeMap<K extends Comparable<K>,V extends Comparable<V>> extends TreeMap<K,V> {
 
     protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
+
+
 
 
     /** Constructs an empty map using the natural ordering of keys. */
@@ -68,5 +71,12 @@ public class SplayTreeMap<K extends Comparable<K>,V extends Comparable<V>> exten
     protected void rebalanceDelete(Position<Entry<K,V>> p) {
         if(!isRoot(p))
             splay(parent(p));
+    }
+
+    public static void main(String[] args) {
+        SplayTreeMap<Integer, Integer> STM = new SplayTreeMap<>();
+        Integer[] arr = new Integer[] {44, 17, 88, 8, 32, 65, 82, 97, 28, 54, 22, 93, 21, 29, 76, 80};
+        for(Integer i: arr) STM.put(i, i);
+        System.out.println(STM);
     }
 }

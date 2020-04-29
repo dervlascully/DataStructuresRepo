@@ -8,7 +8,9 @@ import projectCode20280.Practical_4_PriorityQueues.Entry;
 public class BalanceableBinaryTree<K extends Comparable<K>, V extends Comparable<V>> extends LinkedBinaryTree<Entry<K, V>> {
     // -------------- nested BSTNode class --------------
     // this extends the inherited LinkedBinaryTree.Node class.
-    protected static class BSTNode<E> extends LinkedBinaryTree.Node<E> {
+
+    // debugging, should be protected
+    public static class BSTNode<E> extends LinkedBinaryTree.Node<E> {
         int aux = 0;
 
         BSTNode(E e, Node<E> parent, Node<E> leftChild, Node<E> rightChild) {
@@ -129,4 +131,28 @@ public class BalanceableBinaryTree<K extends Comparable<K>, V extends Comparable
             return x;
         }
     }
+
+    protected BSTNode<Entry<K,V>> validate(Position<Entry<K,V>> p) throws IllegalArgumentException {
+        if (!(p instanceof Node))
+            throw new IllegalArgumentException("Not valid position type");
+
+        // debugging
+//        System.out.println("hello");
+
+        // If p is an instance of a Node<E> type cast it to Node<E>
+        BSTNode<Entry<K,V>> node = (BSTNode<Entry<K,V>>) p;       // safe cast
+
+
+        if (node.getParent() == node)     // our convention for defunct node
+            throw new IllegalArgumentException("p is no longer in the tree");
+        return node;
+    }
+//
+//    public Entry<K,V> set(Position<Entry<K,V>> p, Entry<K,V> e) throws IllegalArgumentException {
+//        BSTNode<Entry<K,V>> node = validate(p);
+//        Entry<K,V> temp = node.getElement();
+//        node.setElement(e);
+//        return temp;
+//
+//    }
 }

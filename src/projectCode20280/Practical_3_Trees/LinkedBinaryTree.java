@@ -75,9 +75,7 @@
 
     private int size = 0;              // number of nodes in the tree
 
-    public LinkedBinaryTree() {
-
-    }      // empty constructor - constructs an empty binary tree
+    public LinkedBinaryTree() { }      // empty constructor - constructs an empty binary tree
 
     // nonpublic utility
     /**
@@ -129,8 +127,8 @@
      */
     @Override
     public Position<E> parent(Position<E> p) throws IllegalArgumentException {
-        return ((Node<E>)p).getParent();
-
+        Node<E> node = validate(p);
+        return node.getParent();
     }
 
     /**
@@ -142,7 +140,8 @@
      */
     @Override
     public Position<E> left(Position<E> p) throws IllegalArgumentException {
-        return ((Node<E>)p).getLeft();
+        Node<E> node = validate(p);
+        return node.getLeft();
     }
 
     /**
@@ -154,7 +153,8 @@
      */
     @Override
     public Position<E> right(Position<E> p) throws IllegalArgumentException {
-        return ((Node<E>)p).getRight();
+        Node<E> node = validate(p);
+        return node.getRight();
     }
 
     // update methods supported by this class
@@ -169,7 +169,7 @@
         if(!isEmpty()) throw new IllegalStateException("Tree is not empty");
 
         root = createNode(e, null, null, null);
-        size++;
+        size = 1;
         return root;
     }
 
@@ -269,16 +269,6 @@
         node.setElement(e);
         return temp;
 
-
-//        Node<E> parent = node.getParent();
-//
-//        if(node != root && parent.getLeft() == node)
-//            parent.setLeft(node);
-//
-//        else if(node != root && parent.getRight() == node)
-//            parent.setRight(node);
-//        node.setElement(e);
-//        return temp;
     }
 
     /**
@@ -326,7 +316,7 @@
      */
     public E remove(Position<E> p) throws IllegalArgumentException {
 
-        Node<E> n = (Node<E>)p;
+        Node<E> n = validate(p);
 
         if(numChildren(n) == 2) // if the node has two children - error
             throw new IllegalArgumentException("Cannot remove node with two children");

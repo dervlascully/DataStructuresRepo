@@ -16,7 +16,7 @@ import java.util.EmptyStackException;
 
 public class AVLTreeMap<K extends Comparable<K>, V extends Comparable<V>> extends TreeMap<K, V> {
 
-    protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
+//    protected BalanceableBinaryTree<K, V> tree = new BalanceableBinaryTree<>();
 
 
     /** Constructs an empty map using the natural ordering of keys. */
@@ -81,6 +81,7 @@ public class AVLTreeMap<K extends Comparable<K>, V extends Comparable<V>> extend
         }while(oldHeight != newHeight && p != null);
     }
 
+
     /** Overrides the TreeMap rebalancing hook that is called after an insertion. */
     @Override
     protected void rebalanceInsert(Position<Entry<K, V>> p) {
@@ -129,21 +130,4 @@ public class AVLTreeMap<K extends Comparable<K>, V extends Comparable<V>> extend
  	*/
 
 
-    public static void main(String [] args) {
-        AVLTreeMap<Integer, Integer> avl = new AVLTreeMap<>();
-        Integer[] arr = new Integer[] { 44, 17, 88, 8, 32, 65, 97, 28, 54, 82, 93, 21, 29, 76, 80 };
-        for (Integer i : arr) {
-            avl.put(i, i);
-        }
-
-//        BinaryTreePrinter<Entry<Integer, Integer>> btp = new BinaryTreePrinter<>(avl.tree);
-//        System.out.println(btp.print());
-
-//        System.out.println(avl.toBinaryTreeString());
-        System.out.println("avl: " + avl);
-
-        avl.remove(arr[0]);
-
-        System.out.println("avl: " + avl);
-    }
 }
