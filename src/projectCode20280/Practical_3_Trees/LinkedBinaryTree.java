@@ -66,7 +66,7 @@
     /** Factory function to create a new node storing element e. */
     protected Node<E> createNode(E e, Node<E> parent,
                                  Node<E> left, Node<E> right) {
-        return new Node<E>(e, parent, left, right);
+        return new Node<>(e, parent, left, right);
     }
 
     // LinkedBinaryTree instance variables
@@ -197,7 +197,7 @@
             return root;
         }
 
-       if(e.compareTo(p.getElement()) == -1) { // if the new node's value is lower than the current node's, we go to the left child
+       if(e.compareTo(p.getElement()) < 0) { // if the new node's value is lower than the current node's, we go to the left child
 //            p.setLeft(addRecursive(p.getLeft(), e));
 
            if(p.left != null)
@@ -208,7 +208,7 @@
        }
 
 
-        else if(e.compareTo(p.getElement()) == 1) { // if the new node's value is greater than the current node's, we go to the right child
+        else if(e.compareTo(p.getElement()) > 0) { // if the new node's value is greater than the current node's, we go to the right child
 //           p.setRight(addRecursive(p.getRight(), e));
            if(p.right != null){
                addRecursive(p.right, e);
@@ -343,8 +343,7 @@
         }
 
         --size; // decrement size as a node has been removed
-        E old = n.getElement();
-        return old; // return the element og the node being removed
+        return n.getElement(); // return the element og the node being removed
 
 
     }
@@ -406,10 +405,8 @@
             return node;
 
         Node<E> left = mirror(node.left);
-        Node<E> right = mirror(node.right);
-
-        // swap left and right pointers
-         node.left = right;
+         // swap left and right pointers
+         node.left = mirror(node.right);
          node.right = left;
 
          return node;
@@ -439,12 +436,11 @@
          int lcaDistance = Pathlength(root, lca) - 1;
 
          // Distance from n1 -> n2  = (root -> n1) + (root -> n2) - 2*(root -> lca)
-         int result = (x + y) - 2 * lcaDistance;
 
-         return result;
+         return (x + y) - 2 * lcaDistance;
      }
 
-     public int Pathlength(Node root, E n1) {
+     public int Pathlength(Node<E> root, E n1) {
          if (root != null) {
              int x = 0;
              if ((root.element == n1) || (x = Pathlength(root.left, n1)) > 0 || (x = Pathlength(root.right, n1)) > 0)
@@ -481,9 +477,7 @@
              if (left != null) {
                  return left;
              }
-             if (right != null) {
-                 return right;
-             }
+             return right;
          }
          return null;
      }
@@ -498,27 +492,12 @@
          return false;
      }
 
-     public void createLevelOrder(E[] arr){
-         if(!arrayIsSorted(arr)){
-             arr = arrayAscending(arr);
-         }
-         if(isEmpty()){
-             int length = arr.length;
-             for(int i = length/2; i <length; i++){
-                 insert(arr[i]);
-             }
-
-             for(int i=0; i < length/2; i++){
-                 insert(arr[i]);
-             }
-         }
-     }
 
      private E[] arrayAscending(E[] arr){
          for (int i = 0; i < arr.length; i++)
          {
              for (int j = i + 1; j < arr.length; j++) {
-                 if (arr[i].compareTo(arr[j]) == 1)
+                 if (arr[i].compareTo(arr[j]) > 0)
                  {
                      E temp = arr[i];
                      arr[i] = arr[j];
@@ -533,11 +512,23 @@
      {
          int i;
          for(i = 0; i < a.length - 2; i ++);{
-            if (a[i].compareTo(a[i+1]) == 1) {
-             return false;
-            }
+         return a[i].compareTo(a[i + 1]) <= 0;
         }
-        return true;
+     }
+
+     public void createLevelOrder(E[] arr){
+         root = createLevelOrder(arr, root, 0); // root is at level 0
+     }
+
+     public Node<E> createLevelOrder(E[] arr, Node<E> p, int i){
+         if(i < arr.length){
+             Node<E> n = createNode(arr[i], p, null, null);
+             n.left = createLevelOrder(arr, n.left, 2*i + 1);
+             n.right = createLevelOrder(arr, n.right, 2*i + 2);
+             ++size;
+             return n;
+         }
+         return p; // return node we are trying to insert
      }
 
 }
