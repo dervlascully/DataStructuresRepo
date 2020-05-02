@@ -120,12 +120,12 @@ public class AVLTreeMap<K extends Comparable<K>, V extends Comparable<V>> extend
     }
     */
 
-    /*
+
  	public String toBinaryTreeString() {
         BinaryTreePrinter< Entry<K, V> > btp = new BinaryTreePrinter<>( (LinkedBinaryTree<Entry<K, V>>) this.tree);
         return btp.print();
  	}
- 	*/
+
 
 
 }

@@ -18,6 +18,7 @@ public class ArrayStack<E> implements Stack<E>{
         this.cap = capacity;
     }
 
+
     @Override
     public boolean isEmpty() {
         return (t == -1);

@@ -107,7 +107,7 @@ public class Test_StacksAndQueues {
     public void enqueueLQ(){
         lq.enqueue(1);
         lq.enqueue(2);
-        assertEquals("front -> 1 2  <- rear", lq.toString());
+        assertEquals("[1, 2]", lq.toString());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class Test_StacksAndQueues {
         lq.enqueue(2);
         lq.enqueue(3);
         assertTrue(lq.dequeue() == 1);
-        assertEquals("front -> 2 3  <- rear", lq.toString());
+        assertEquals("[2, 3]", lq.toString());
     }
 
     @Test
@@ -155,7 +155,7 @@ public class Test_StacksAndQueues {
         ls.push(0);
         ls.push(1);
         ls.push(2);
-        assertEquals("top -> 2 1 0 ", ls.toString());
+        assertEquals("[2, 1, 0]", ls.toString());
     }
 
     @Test
@@ -164,7 +164,7 @@ public class Test_StacksAndQueues {
         ls.push(1);
         ls.push(2);
         ls.pop();
-        assertEquals("top -> 1 0 ", ls.toString());
+        assertEquals("[1, 0]", ls.toString());
     }
 
     @Test

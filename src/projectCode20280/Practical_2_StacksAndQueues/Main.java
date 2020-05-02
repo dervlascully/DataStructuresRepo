@@ -114,7 +114,7 @@ public class Main {
             s3.push(5);
         }
         catch(Exception e){
-            System.out.println("Cannot add note, stack out of bounds");
+            System.out.println("Cannot add note, stack out of bounds. Capacity: " + s3.getCapacity());
         }
 
 

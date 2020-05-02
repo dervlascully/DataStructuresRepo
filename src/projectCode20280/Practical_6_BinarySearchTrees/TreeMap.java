@@ -477,13 +477,13 @@ public class TreeMap<K extends Comparable<K>, V extends Comparable <V>> extends 
         tree.addRoot(null);       // create a sentinel leaf as root
     }
 
-//    @Override
-//    public Iterable<K> keySet() {
-//        ArrayList<K> buffer = new ArrayList<>(size());
-//        for(Position<Entry<K, V>> p : tree.inorder()){ // inorder traversal of the tree
-//            if(isInternal(p)) // filter out 'null's
-//                buffer.add(p.getElement().getKey());
-//        }
-//        return buffer;
-//    }
+    @Override
+    public Iterable<K> keySet() {
+        ArrayList<K> buffer = new ArrayList<>(size());
+        for(Position<Entry<K, V>> p : tree.inorder()){ // inorder traversal of the tree
+            if(isInternal(p)) // filter out 'null's
+                buffer.add(p.getElement().getKey());
+        }
+        return buffer;
+    }
 }
